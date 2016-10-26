@@ -22,7 +22,7 @@ $ make clean
 $ ./memo help
 MEMO game
 Podstawy Grafiki Komputerowej 2016
-author: kstarzyk 264734
+Krzysztof Starzyk 264734
 
   Build:   $ make linux OR $ make mac (default: make mac)
   Usage:   $ ./memo M N K W (default values: 6 4 3 3)
