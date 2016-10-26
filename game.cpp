@@ -66,7 +66,7 @@ bool Game::setupGame(GLuint programID, int _M, int _N, int _K, int _W) {
   }
 
   std::shuffle(cards.begin(), cards.end(), g);
-  for (int it=0; it<cards.size(); it++) {
+  for (unsigned int it=0; it<cards.size(); it++) {
     int i = it % M;
     int j = it / M;
     cards[it]->setPosition(-1.0 + 1.0 / float(M) + 2.0*float(i)/float(M), -1.0 + 1.0 / float(N) + 2.0*float(j)/float(N));

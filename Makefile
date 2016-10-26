@@ -1,32 +1,27 @@
-program_NAME := memo
+CXX = g++
+CXXFLAGS = -Wall -std=c++11
+LDLIBS = -lglfw -lGL -lGLU -lGLEW -lX11 -lXxf86vm -lpthread -lXrandr -lXi
 
-CXX := g++
-CXXFLAGS := -std=c++11 -Wall -pedantic -O2 
+LIB_DIR = -L/usr/lib/
+INC_DIR = -I/usr/local/include/ -I/usr/local/include/GLFW/
 
-program_SHADERS := $(wildcard common/*.cpp)
+OBJ_DIR = bin
+SOURCE = $(wildcard *.cpp) 
+COMMON_SOURCE = common/shader.cpp
+OBJECTS = ${SOURCE:%.cpp=$(OBJ_DIR)/%.o} ${COMMON_SOURCE:%.cpp=$(OBJ_DIR)/%.o}
+EXECUTABLE = memo
 
-program_CXX_SRCS := $(wildcard *.cpp)
-program_CXX_OBJS := ${program_CXX_SRCS:.cpp=.o} ${program_SHADERS:.cpp=.o}
-program_OBJS := $(program_CXX_OBJS)
+all: init $(OBJECTS) $(EXECUTABLE)
 
-program_INCLUDE_DIRS := /home/anl/PGK/include/ /home/anl/PGK/include/GLFW/
-program_LIBRARIES := glfw3 GL GLU GLEW X11 Xxf86vm pthread Xrandr Xi 
+$(EXECUTABLE):
+	$(CXX) $(LDFLAGS) $(LIB_DIR) -o $@ $(OBJECTS) $(LDLIBS)
 
-CPPFLAGS += $(foreach includedir,$(program_INCLUDE_DIRS),-I$(includedir))
-LDFLAGS :=
-LDFLAGS += $(foreach library,$(program_LIBRARIES),-l$(library))
+$(OBJ_DIR)/%.o: %.cpp
+	$(CXX) $(CXXFLAGS) $(INC_DIR) -c $< -o $@
 
-LINKER := $(CXX) -L/home/anl/PGK/libs/  $(CXXFLAGS) $(CPPFLAGS) $(LDFLAGS) 
-
-.PHONY: all mac linux clean distclean
-all: linux
-
-linux: $(program_OBJS)
-	$(LINKER) $(program_OBJS) -o $(program_NAME)
+init:
+	@mkdir -p "$(OBJ_DIR)"
+	@mkdir -p "$(OBJ_DIR)/common"
 
 clean:
-	@- $(RM) $(program_NAME)
-	@- $(RM) $(program_OBJS)
-
-distclean: clean
-
+	@rm -rf $(OBJ_DIR) $(EXECUTABLE)
