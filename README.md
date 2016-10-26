@@ -34,7 +34,7 @@ $ ./memo 6 4 2 4
 # will fail because K*W > 2*M*N
 $ ./memo 4 4 4 4
 ```
-### Overwiev
+### Overview
 
 - 6 Colors
 - 4 Shapes (Line, Cross, Triangle, X)
