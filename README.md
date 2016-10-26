@@ -2,9 +2,9 @@
 
 ### Example
 #### default settings ./memo or ./memo 6 4 3 3
-[smaller|screenshots/smaller.png]
+![smaller](screenshots/smaller.png)
 #### ./memo 8 6 4 4
-[bigger|screenshots/bigger.png]
+![bigger](screenshots/bigger.png)
 
 ### Build
 ```bash
