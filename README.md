@@ -1,5 +1,5 @@
 # MEMO Game (OpenGL)
-
+g++ -L/home/anl/PGK/libs/     -I/home/anl/PGK/include/ -I/home/anl/PGK/include/GLFW/  card.o game.o common/shader.o main.o -o memo   -lglfw3 -lGL -lGLU -lGLEW -lX11 -lXxf86vm -lpthread -lXrandr -lXi
 ### Example
 #### default settings ./memo or ./memo 6 4 3 3
 ![smaller](screenshots/smaller.png)

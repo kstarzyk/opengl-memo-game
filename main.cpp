@@ -4,7 +4,7 @@
 #include <vector>
 #include <GL/glew.h>
 #include <glfw3.h>
-
+#include <string.h>
 GLFWwindow* window;
 #include "./common/shader.hpp"
 #include "./common/glm/glm.hpp"

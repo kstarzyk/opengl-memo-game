@@ -1,7 +1,7 @@
 program_NAME := memo
 
 CXX := g++
-CXXFLAGS := -std=c++11 -Wall -pedantic -O2
+CXXFLAGS := -std=c++11 -Wall -pedantic -O2 
 
 program_SHADERS := $(wildcard common/*.cpp)
 
@@ -9,27 +9,20 @@ program_CXX_SRCS := $(wildcard *.cpp)
 program_CXX_OBJS := ${program_CXX_SRCS:.cpp=.o} ${program_SHADERS:.cpp=.o}
 program_OBJS := $(program_CXX_OBJS)
 
-program_INCLUDE_DIRS := /usr/local/include/ /usr/local/include/GLFW/
-program_LIBRARIES := glfw3 GLEW
-program_LINUX_LIBRARIES := GL
-program_FRAMEWORKS := OpenGL # GLUT
+program_INCLUDE_DIRS := /home/anl/PGK/include/ /home/anl/PGK/include/GLFW/
+program_LIBRARIES := glfw3 GL GLU GLEW X11 Xxf86vm pthread Xrandr Xi 
 
 CPPFLAGS += $(foreach includedir,$(program_INCLUDE_DIRS),-I$(includedir))
+LDFLAGS :=
 LDFLAGS += $(foreach library,$(program_LIBRARIES),-l$(library))
-LINUXFLAGS += $(foreach library,$(program_LINUX_LIBRARIES),-l$(library))
-FRAMEWORKFLAGS += $(foreach framework,$(program_FRAMEWORKS),-framework $(framework))
 
-LINKER_MACOS := $(CXX) $(CXXFLAGS) $(CPPFLAGS) $(LDFLAGS) $(FRAMEWORKFLAGS)
-LINKER_LINUX := $(CXX) $(CXXFLAGS) $(CPPFLAGS) $(LDFLAGS) $(LINUXFLAGS)
+LINKER := $(CXX) -L/home/anl/PGK/libs/  $(CXXFLAGS) $(CPPFLAGS) $(LDFLAGS) 
 
 .PHONY: all mac linux clean distclean
-all: mac
-
-mac: $(program_OBJS)
-	$(LINKER_MACOS) $(program_OBJS) --std=c++11 -o $(program_NAME)
+all: linux
 
 linux: $(program_OBJS)
-	$(LINKER_LINUX) $(program_OBJS) --std=c++11 -o $(program_NAME)
+	$(LINKER) $(program_OBJS) -o $(program_NAME)
 
 clean:
 	@- $(RM) $(program_NAME)
