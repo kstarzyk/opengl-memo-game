@@ -1,17 +1,25 @@
 # MEMO Game (OpenGL)
 
+### Example
+#### default settings ./memo or ./memo 6 4 3 3
+[smaller|screenshots/smaller.png]
+#### ./memo 8 6 4 4
+[bigger|screenshots/bigger.png]
+
 ### Build
-```
+```bash
 # linux-like:
 $ make linux
 # for macos:
 $ make mac
+# clean binaries
+$ make clean
 ```
 
 ### Run
 ```
 # will print help message
-./memo help
+$ ./memo help
 MEMO game
 Podstawy Grafiki Komputerowej 2016
 author: kstarzyk 264734
@@ -22,9 +30,9 @@ author: kstarzyk 264734
 
 
 # start game for 24 cards in one of 2 colors and one of 4 shapes
-./memo 6 4 2 4
+$ ./memo 6 4 2 4
 # will fail because K\*W > 2\*M\*N
-./memo 4 4 4 4
+$ ./memo 4 4 4 4
 ```
 ### Overwiev
 
@@ -32,7 +40,7 @@ author: kstarzyk 264734
 - 4 Shapes (Line, Cross, Triangle, X)
 
 ### Implementation details
-Most constants and VBO are defined in
+Most constants and VBO are defined in card.hpp.
 
 *GLM* library is used.
 
