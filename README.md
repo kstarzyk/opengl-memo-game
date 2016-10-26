@@ -31,7 +31,7 @@ author: kstarzyk 264734
 
 # start game for 24 cards in one of 2 colors and one of 4 shapes
 $ ./memo 6 4 2 4
-# will fail because K\*W > 2\*M\*N
+# will fail because K*W > 2*M*N
 $ ./memo 4 4 4 4
 ```
 ### Overwiev
